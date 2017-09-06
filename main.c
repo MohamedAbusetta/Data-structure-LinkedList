@@ -15,7 +15,7 @@ void Print();
 
 int main()
 {
-    int i,n,x;
+    int i,n,x,ele,m;
     head = NULL;
     printf("Enter number of elements = ");
     scanf("%d",&n);
@@ -24,11 +24,14 @@ int main()
     {
         printf("\nEnter element number %d = ",i);
         scanf("%d",&x);
-        Insert_end(x);
+        Insert_begin(x);
         Print();
     }
-
-    Insert_nth(-66,1);
+    printf("\nEnter you new element = ");
+    scanf("%d",&ele);
+    printf("\nEnter position of Element = ");
+    scanf("%d",&m);
+    Insert_nth(ele,m);
     printf("\nLinked list after insert new element");
     Print();
 
@@ -80,6 +83,11 @@ void Print()
 
 void Insert_nth(int x, int n)
 {
+    if(n==0)
+    {
+        Insert_begin(x);
+        return;
+    }
     int i;
 
     struct Node* temp = (struct Node*)malloc(sizeof(int));
@@ -88,6 +96,17 @@ void Insert_nth(int x, int n)
 
     for (i=0 ; i < n-1 ; i++){
         temp1 = temp1->next;
+        if((temp1==NULL) && (i == n-2))
+        {
+            printf("\nposition");
+            Insert_end(x);
+            return;
+        }
+        else if ((temp1==NULL) & (i != n-2))
+        {
+            printf("\n Invalid element position");
+            return;
+        }
     }
 
     temp->data = x;
