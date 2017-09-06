@@ -24,11 +24,12 @@ int main()
     {
         printf("\nEnter element number %d = ",i);
         scanf("%d",&x);
-        Insert_begin(x);
+        Insert_end(x);
         Print();
     }
 
-    Insert_nth(-66,4);
+    Insert_nth(-66,1);
+    printf("\nLinked list after insert new element");
     Print();
 
     return 0;
@@ -80,11 +81,12 @@ void Print()
 void Insert_nth(int x, int n)
 {
     int i;
+
     struct Node* temp = (struct Node*)malloc(sizeof(int));
     struct Node* temp1 = (struct Node*)malloc(sizeof(int));
     temp1 = head;
 
-    for (i=0 ; i < n ; i++){
+    for (i=0 ; i < n-1 ; i++){
         temp1 = temp1->next;
     }
 
