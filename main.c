@@ -11,6 +11,7 @@ struct Node* head;
 void Insert_end (int x);
 void Insert_begin (int x);
 void Insert_nth(int x, int n);
+void Delete(int n);
 void Print();
 
 int main()
@@ -31,7 +32,7 @@ int main()
     scanf("%d",&ele);
     printf("\nEnter position of Element = ");
     scanf("%d",&m);
-    Insert_nth(ele,m);
+    Delete(m);
     printf("\nLinked list after insert new element");
     Print();
 
@@ -98,7 +99,7 @@ void Insert_nth(int x, int n)
         temp1 = temp1->next;
         if((temp1==NULL) && (i == n-2))
         {
-            printf("\nposition");
+            printf("\nPosition");
             Insert_end(x);
             return;
         }
@@ -113,6 +114,29 @@ void Insert_nth(int x, int n)
     temp->next = temp1->next;
     temp1->next = temp;
 
+}
+
+void Delete(int n)
+{
+    int i;
+    struct Node* temp = (struct Node*)malloc(sizeof(int));
+    struct Node* temp1 = (struct Node*)malloc(sizeof(int));
+    temp1 = head;
+
+    if (n==0)
+    {
+        head = temp1->next;
+        free(temp1);
+        return;
+    }
+
+    for( i = 0 ; i< n-1 ; i++)
+    {
+        temp1=temp1->next;
+    }
+    temp = temp1->next;
+    temp1->next=temp->next;
+    free(temp);
 }
 
 
