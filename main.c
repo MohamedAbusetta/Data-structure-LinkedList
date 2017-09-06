@@ -10,6 +10,7 @@ struct Node* head;
 
 void Insert_end (int x);
 void Insert_begin (int x);
+void Insert_nth(int x, int n);
 void Print();
 
 int main()
@@ -26,6 +27,9 @@ int main()
         Insert_begin(x);
         Print();
     }
+
+    Insert_nth(-66,4);
+    Print();
 
     return 0;
 }
@@ -73,7 +77,22 @@ void Print()
     printf("\n");
 }
 
+void Insert_nth(int x, int n)
+{
+    int i;
+    struct Node* temp = (struct Node*)malloc(sizeof(int));
+    struct Node* temp1 = (struct Node*)malloc(sizeof(int));
+    temp1 = head;
 
+    for (i=0 ; i < n ; i++){
+        temp1 = temp1->next;
+    }
+
+    temp->data = x;
+    temp->next = temp1->next;
+    temp1->next = temp;
+
+}
 
 
 
