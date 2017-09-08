@@ -12,6 +12,8 @@ void Insert_end (int x);
 void Insert_begin (int x);
 void Insert_nth(int x, int n);
 void Delete(int n);
+void Reverse();
+void Reverse_rec(int x);
 void Print();
 
 int main()
@@ -28,12 +30,7 @@ int main()
         Insert_begin(x);
         Print();
     }
-    printf("\nEnter you new element = ");
-    scanf("%d",&ele);
-    printf("\nEnter position of Element = ");
-    scanf("%d",&m);
-    Delete(m);
-    printf("\nLinked list after insert new element");
+    Reverse_rec(0);
     Print();
 
     return 0;
@@ -78,6 +75,7 @@ void Print()
     {
         printf(" %d ",temp->data);
         temp = temp->next;
+
     }
     printf("\n");
 }
@@ -139,5 +137,42 @@ void Delete(int n)
     free(temp);
 }
 
+void Reverse()
+{
 
+    struct Node* next;
+    struct Node* previous = head;
+    struct Node* current = NULL;
+    while(head != NULL)
+    {
+        next = head->next;
+        previous = head;
+        previous->next = current;
+        current = head;
+        head = next;
+    }
+    head = previous;
 
+}
+void Reverse_rec(int x)
+{
+    x++;
+    struct Node* new_value = head;
+    struct Node* current_address = head->next;
+
+    if (current_address == NULL)
+    {
+        head = new_value;
+        return;
+    }
+    head = head->next;
+    Reverse_rec(x);
+    current_address->next = new_value;
+
+    if (x == 1)
+    {
+            new_value->next = NULL;
+
+    }
+    return;
+}
